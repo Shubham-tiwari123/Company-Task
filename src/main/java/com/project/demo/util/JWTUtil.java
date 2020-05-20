@@ -18,21 +18,32 @@ public class JWTUtil {
 
     public String extractUserName(String token){
         final Claims claims = extractAllClaims(token);
+        if (claims==null)
+            return null;
         return claims.getSubject();
     }
 
     public Date extractExpiration(String token){
         final Claims claims = extractAllClaims(token);
+        if (claims==null)
+            return null;
         return claims.getExpiration();
     }
 
     public Date extractIssuedDate(String token){
         final Claims claims = extractAllClaims(token);
+        if (claims==null)
+            return null;
         return claims.getIssuedAt();
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        try {
+            return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        }catch (Exception  e){
+            System.out.println("EEEEE:"+e);
+            return null;
+        }
     }
 
     private Boolean isTokenExpired(String token){
@@ -59,12 +70,8 @@ public class JWTUtil {
         String createToken = Jwts.builder().setClaims(claims).setSubject(userName).setIssuedAt(issueDate)
                 .setExpiration(expiryDate).signWith(SignatureAlgorithm.HS256,SECRET_KEY).compact();
 
-        try {
-            return token.equals(createToken) && !isTokenExpired(token);
-        }catch (Exception e){
-            System.out.println("e:"+e);
-            return false;
-        }
+        return token.equals(createToken) && !isTokenExpired(token);
+
     }
 }
 
