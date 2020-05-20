@@ -6,7 +6,7 @@ I have used **JWT (JSON Web Token)** for auth mechanism
 of an API and  **MYSQL** as Database to store the data. 
 
 
-###Packages
+### Packages
 
 **controller:** This is used to handel all api calls.
 
@@ -21,7 +21,7 @@ are handled here.
 
 **util:** This is used to handel all the JWT related works
 
-###Project Flow 
+### Project Flow 
 
 1. When user hits the **login API** then user credentials are
 verified from the database. If the credentials are 
