@@ -74,7 +74,16 @@ command:
     
         sudo apt install curl
         
+10. Once curl is installed use the below curl commands for executing the api.
 
+11. Open two different terminals. On one terminal you need to run the maven project
+and on another terminal you need to run the curl commands.
+
+12. Copy the curl commands and paste it in the terminal and hit enter to execute
+it. 
+
+13. For **event_list** api you will see the output on the terminal on which curl is 
+executed. 
 ### Curl commands for APIs
 
 **For Registration API**
